@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+	<cc:interface>
+		<cc:attribute name="r" required="true" />
+		<cc:attribute name="g" required="true" />
+		<cc:attribute name="b" required="true" />
+		<cc:attribute name="action" method-signature="java.lang.String navigate()" />
+		<cc:editableValueHolder name="inputs" targets="r g b" />
+	</cc:interface>
+	
+	<cc:implementation>
+	<h:panelGrid columns="3">
+		<h:outputLabel value="R:" style="display: inline-block; width: 50px;" />
+		<h:inputText id="r" value="#{cc.attrs.r}">
+			<f:validateLongRange minimum="0" maximum="255" />
+			<f:ajax render="mr rgb" />
+		</h:inputText>
+		<h:message id="mr" for="r"/>
+		
+		<h:outputLabel value="G:" style="display: inline-block; width: 50px;" />
+		<h:inputText id="g" value="#{cc.attrs.g}">
+			<f:validateLongRange minimum="0" maximum="255" />
+			<f:ajax render="mg rgb" />
+		</h:inputText>
+		<h:message id="mg" for="g"/>
+		
+		<h:outputLabel value="B:" style="display: inline-block; width: 50px;" />
+		<h:inputText id="b" value="#{cc.attrs.b}">
+			<f:validateLongRange minimum="0" maximum="255" />
+			<f:ajax render="mb rgb" />
+		</h:inputText>
+		<h:message id="mb" for="b"/>
+		
+		<h:commandButton action="#{cc.attrs.action}" value="Podgląd" />
+	</h:panelGrid>
+	<p />
+	
+	<h:outputText id="rgb" value=" " style="border: 1px solid; padding: 1px 10px; background-color: rgb(#{cc.attrs.r},#{cc.attrs.g},#{cc.attrs.b});" />
+	
+	</cc:implementation>
+	
+</html>
