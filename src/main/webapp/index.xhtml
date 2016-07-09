@@ -3,11 +3,23 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:util="http://java.sun.com/jsf/composite/util">
+	xmlns:util="http://java.sun.com/jsf/composite/util"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head></h:head>
 <h:body>
 	<h:form>
+
+		<h:panelGrid columns="2">
+			<p:outputLabel value="Login: " />
+			<p:inputText value="#{welcomePrimeFaces.login}" />
+			
+			<p:outputLabel value="Hasło: " />
+			<p:password value="#{welcomePrimeFaces.password}" />
+			
+			<p:commandButton value="Zaloguj" action="#{welcomePrimeFaces.login()}" />
+		</h:panelGrid>
+
 		<ui:remove>
 			<util:inputText label="Etykieta:" value="#{componentHelper.input}" />
 			<util:saveCommand saveAction="#{componentHelper.save()}"
@@ -15,29 +27,30 @@
 			<util:rgb r="#{rgbBean.r}" g="#{rgbBean.g}" b="#{rgbBean.b}">
 				<f:validateLongRange minimum="0" maximum="255" for="inputs" />
 			</util:rgb>
-		</ui:remove>
-		
-		<h:panelGrid columns="1">
 
-		<h:selectOneMenu value="#{locationData.district}" 
-			converter="#{districtConverter}">
-			<f:selectItems value="#{locationData.districts}" var="dist"
-				itemLabel="#{dist.name}" itemValue="#{dist}" />
-			<f:ajax render="cityCombo streetCombo" />
-		</h:selectOneMenu>
-		
-		<h:selectOneMenu id="cityCombo" value="#{locationData.city}"
-			converter="#{cityConverter}">
-			<f:selectItems value="#{locationData.cities}" var="cit"
-				itemLabel="#{cit.name}" itemValue="#{cit}" />
-			<f:ajax render="streetCombo" />			
-		</h:selectOneMenu>
-		
-		<h:selectOneMenu id="streetCombo" value="#{locationData.street}">
-			<f:selectItems value="#{locationData.streets}" var="str"
-				itemLabel="#{str.name}" itemValue="#{str}"/>
-		</h:selectOneMenu>
-		</h:panelGrid>
+
+			<h:panelGrid columns="1">
+
+				<h:selectOneMenu value="#{locationData.district}"
+					converter="#{districtConverter}">
+					<f:selectItems value="#{locationData.districts}" var="dist"
+						itemLabel="#{dist.name}" itemValue="#{dist}" />
+					<f:ajax render="cityCombo streetCombo" />
+				</h:selectOneMenu>
+
+				<h:selectOneMenu id="cityCombo" value="#{locationData.city}"
+					converter="#{cityConverter}">
+					<f:selectItems value="#{locationData.cities}" var="cit"
+						itemLabel="#{cit.name}" itemValue="#{cit}" />
+					<f:ajax render="streetCombo" />
+				</h:selectOneMenu>
+
+				<h:selectOneMenu id="streetCombo" value="#{locationData.street}">
+					<f:selectItems value="#{locationData.streets}" var="str"
+						itemLabel="#{str.name}" itemValue="#{str}" />
+				</h:selectOneMenu>
+			</h:panelGrid>
+		</ui:remove>
 	</h:form>
 </h:body>
 </html>
