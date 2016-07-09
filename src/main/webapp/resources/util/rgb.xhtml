@@ -16,16 +16,22 @@
 		<h3>Wybierz kolor</h3>
 		<h:panelGrid columns="3">
 			<h:outputLabel value="R:" style="display: inline-block; width: 60px;" />
-			<h:inputText id="r" value="#{cc.attrs.r}" />
-			<h:message for="r"/>
+			<h:inputText id="r" value="#{cc.attrs.r}">
+				<f:ajax event="valueChange" execute="@this" render="mr" />
+			</h:inputText>
+			<h:message id="mr" for="r"/>
 			
 			<h:outputLabel value="G:" style="display: inline-block; width: 60px;" />
-			<h:inputText id="g" value="#{cc.attrs.g}" />
-			<h:message for="g" />
+			<h:inputText id="g" value="#{cc.attrs.g}">
+				<f:ajax event="valueChange" execute="@this" render="mg" />
+			</h:inputText>
+			<h:message id="mg" for="g" />
 			
 			<h:outputLabel value="B:" style="display: inline-block; width: 60px;" />
-			<h:inputText id="b" value="#{cc.attrs.b}" />
-			<h:message for="b" />
+			<h:inputText id="b" value="#{cc.attrs.b}">
+				<f:ajax event="valueChange" execute="@this" render="mb" />
+			</h:inputText>
+			<h:message id="mb" for="b" />
 			
 			<h:commandButton value="Podgląd" />
 		
