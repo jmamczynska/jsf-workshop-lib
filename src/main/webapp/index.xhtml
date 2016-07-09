@@ -8,19 +8,83 @@
 
 <h:head></h:head>
 <h:body>
-	<h:form>
-
-		<h:panelGrid columns="2">
-			<p:outputLabel value="Login: " />
-			<p:inputText value="#{welcomePrimeFaces.login}" />
+	<h:form id="form">
+	
+		<p:dataTable id="productTable" value="#{productController.productList}"
+			selection="#{productController.product}" selectionMode="single"
+			var="product" rowKey="#{product.id}">
 			
-			<p:outputLabel value="Hasło: " />
-			<p:password value="#{welcomePrimeFaces.password}" />
+			<p:column headerText="ID">
+				<p:outputLabel value="#{product.id}" />
+			</p:column>
 			
-			<p:commandButton value="Zaloguj" action="#{welcomePrimeFaces.login()}" />
-		</h:panelGrid>
+			<p:column headerText="Kod">
+				<p:outputLabel value="#{product.code}" />
+			</p:column>
+			
+			<p:column headerText="Nazwa">
+				<p:outputLabel value="#{product.name}" />
+			</p:column>
+			
+			<f:facet name="footer">
+				<p:commandButton value="Podgląd" icon="ui-icon-search"
+				oncomplete="PF('productDialog').show()" 
+				process=":form:productTable" update=":form:productPanel"/>
+			</f:facet>
+		
+		</p:dataTable>
+		
+		<p:dialog widgetVar="productDialog" header="Szczegóły" modal="true">
+			<p:outputPanel id="productPanel">
+				<h:panelGrid columns="2">				
+				
+					<p:outputLabel value="Nazwa:" />
+					<p:outputLabel value="#{productController.product.code}" />
+					
+					<p:outputLabel value="Nazwa:" />
+					<p:outputLabel value="#{productController.product.name}" />
+					
+					<p:outputLabel value="Cena:" />
+					<p:outputLabel value="#{productController.product.price}" />
+					
+					<p:outputLabel value="Data:" />
+					<p:outputLabel value="#{productController.product.purchaseDate}" />
+					
+				</h:panelGrid>
+			</p:outputPanel>		
+		</p:dialog>
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 		<ui:remove>
+			<h:panelGrid columns="2">
+				<p:outputLabel value="Login: " />
+				<p:inputText value="#{welcomePrimeFaces.login}" />
+
+				<p:outputLabel value="Hasło: " />
+				<p:password value="#{welcomePrimeFaces.password}" />
+
+				<p:commandButton value="Zaloguj"
+					action="#{welcomePrimeFaces.login()}" />
+			</h:panelGrid>
+
+
 			<util:inputText label="Etykieta:" value="#{componentHelper.input}" />
 			<util:saveCommand saveAction="#{componentHelper.save()}"
 				cancelAction="#{componentHelper.cancel()}" />
