@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -41,6 +43,11 @@ public class ProductController implements Serializable {
 
 	public void setProductList(List<Product> productList) {
 		this.productList = productList;
+	}
+	
+	public void showGrowl() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(null, new FacesMessage("Sukces", "Doda³eœ produkt " + product.getName()));
 	}
 
 }

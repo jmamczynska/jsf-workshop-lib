@@ -8,11 +8,16 @@
 
 <h:head></h:head>
 <h:body>
+	<h:outputStylesheet library="css" name="style.css" />
+
 	<h:form id="form">
 	
+		<p:growl id="growl" sticky="true" showDetail="true" />
+			
 		<p:dataTable id="productTable" value="#{productController.productList}"
 			selection="#{productController.product}" selectionMode="single"
-			var="product" rowKey="#{product.id}">
+			var="product" rowKey="#{product.id}"
+			styleClass="panel">
 			
 			<p:column headerText="ID">
 				<p:outputLabel value="#{product.id}" />
@@ -34,7 +39,7 @@
 		
 		</p:dataTable>
 		
-		<p:dialog widgetVar="productDialog" header="Szczegóły" modal="true">
+		<p:dialog widgetVar="productDialog" header="Szczegóły">
 			<p:outputPanel id="productPanel">
 				<h:panelGrid columns="2">				
 				
@@ -51,7 +56,11 @@
 					<p:outputLabel value="#{productController.product.purchaseDate}" />
 					
 				</h:panelGrid>
-			</p:outputPanel>		
+			</p:outputPanel>
+			
+			<p:commandButton value="Dodaj" update="growl" 
+				actionListener="#{productController.showGrowl()}"
+				oncomplete="PF('productDialog').hide()" />
 		</p:dialog>
 		
 		
