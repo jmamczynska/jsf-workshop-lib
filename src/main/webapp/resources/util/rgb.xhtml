@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:cc="http://java.sun.com/jsf/composite">
+
+	<cc:interface>
+		<cc:attribute name="r" required="true" />
+		<cc:attribute name="g" required="true" />
+		<cc:attribute name="b" required="true" />
+		<cc:editableValueHolder name="inputs" targets="r g b" />
+	</cc:interface>
+	
+	<cc:implementation>
+		<h3>Wybierz kolor</h3>
+		<h:panelGrid columns="3">
+			<h:outputLabel value="R:" style="display: inline-block; width: 60px;" />
+			<h:inputText id="r" value="#{cc.attrs.r}" />
+			<h:message for="r"/>
+			
+			<h:outputLabel value="G:" style="display: inline-block; width: 60px;" />
+			<h:inputText id="g" value="#{cc.attrs.g}" />
+			<h:message for="g" />
+			
+			<h:outputLabel value="B:" style="display: inline-block; width: 60px;" />
+			<h:inputText id="b" value="#{cc.attrs.b}" />
+			<h:message for="b" />
+			
+			<h:commandButton value="Podgląd" />
+		
+		</h:panelGrid>
+		
+		<h:outputLabel value="RGB: (#{cc.attrs.r}, #{cc.attrs.g}, #{cc.attrs.b}): " />
+		<h:outputText value=" " style="padding: 1px 10px; border: 1px; 
+				background-color: rgb(#{cc.attrs.r}, #{cc.attrs.g}, #{cc.attrs.b});" />
+	
+	</cc:implementation>
+
+</html>

@@ -8,8 +8,15 @@
 <h:head></h:head>
 <h:body>
 	<h:form>
-		<util:inputText label="Etykieta:" value="#{componentHelper.input}" />
-		<util:saveCommand saveAction="#{componentHelper.save()}" cancelAction="#{componentHelper.cancel()}" />
+		<ui:remove>
+			<util:inputText label="Etykieta:" value="#{componentHelper.input}" />
+			<util:saveCommand saveAction="#{componentHelper.save()}"
+				cancelAction="#{componentHelper.cancel()}" />
+		</ui:remove>
+		
+		<util:rgb r="#{rgbBean.r}" g="#{rgbBean.g}" b="#{rgbBean.b}">
+			<f:validateLongRange minimum="0" maximum="255" for="inputs" />
+		</util:rgb>
 	</h:form>
 </h:body>
 </html>
