@@ -69,12 +69,27 @@ public class LocationData implements Serializable {
 	}
 
 	public List<City> getCities() {
-		// TODO: prepare the list
+		cities.clear();
+		if (district == null) {
+			district = districts.get(0);
+		}		
+		for (City c : allCities) {
+			if (district.getId() == c.getDictrict().getId()) {
+				cities.add(c);
+			}
+		}
+		city = cities.get(0);		
 		return cities;
 	}
 
 	public List<Street> getStreets() {
-		// TODO: prepare the list
+		streets.clear();		
+		for (Street s : allStreets) {
+			if (city.getId() == s.getCity().getId()) {
+				streets.add(s);
+			}
+		}		
+		street = streets.get(0);		
 		return streets;
 	}
 

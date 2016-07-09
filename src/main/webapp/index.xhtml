@@ -12,11 +12,32 @@
 			<util:inputText label="Etykieta:" value="#{componentHelper.input}" />
 			<util:saveCommand saveAction="#{componentHelper.save()}"
 				cancelAction="#{componentHelper.cancel()}" />
+			<util:rgb r="#{rgbBean.r}" g="#{rgbBean.g}" b="#{rgbBean.b}">
+				<f:validateLongRange minimum="0" maximum="255" for="inputs" />
+			</util:rgb>
 		</ui:remove>
 		
-		<util:rgb r="#{rgbBean.r}" g="#{rgbBean.g}" b="#{rgbBean.b}">
-			<f:validateLongRange minimum="0" maximum="255" for="inputs" />
-		</util:rgb>
+		<h:panelGrid columns="1">
+
+		<h:selectOneMenu value="#{locationData.district}" 
+			converter="#{districtConverter}">
+			<f:selectItems value="#{locationData.districts}" var="dist"
+				itemLabel="#{dist.name}" itemValue="#{dist}" />
+			<f:ajax render="cityCombo streetCombo" />
+		</h:selectOneMenu>
+		
+		<h:selectOneMenu id="cityCombo" value="#{locationData.city}"
+			converter="#{cityConverter}">
+			<f:selectItems value="#{locationData.cities}" var="cit"
+				itemLabel="#{cit.name}" itemValue="#{cit}" />
+			<f:ajax render="streetCombo" />			
+		</h:selectOneMenu>
+		
+		<h:selectOneMenu id="streetCombo" value="#{locationData.street}">
+			<f:selectItems value="#{locationData.streets}" var="str"
+				itemLabel="#{str.name}" itemValue="#{str}"/>
+		</h:selectOneMenu>
+		</h:panelGrid>
 	</h:form>
 </h:body>
 </html>
