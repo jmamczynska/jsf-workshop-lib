@@ -7,6 +7,9 @@
 
 <h:head></h:head>
 <h:body>
-
+	<h:form>
+		<util:inputText label="Etykieta:" value="#{componentHelper.input}" />
+		<util:saveCommand saveAction="#{componentHelper.save()}" cancelAction="#{componentHelper.cancel()}" />
+	</h:form>
 </h:body>
 </html>
