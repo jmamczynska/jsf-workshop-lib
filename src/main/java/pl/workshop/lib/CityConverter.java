@@ -7,6 +7,12 @@ import javax.faces.convert.Converter;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+/**
+ * CDI/JSF converter for {@link City} class
+ * 
+ * @author JMa
+ *
+ */
 @Named
 @RequestScoped
 public class CityConverter implements Converter {
