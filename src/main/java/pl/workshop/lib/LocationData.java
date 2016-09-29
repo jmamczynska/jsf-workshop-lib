@@ -34,6 +34,7 @@ public class LocationData implements Serializable {
 		districts.add(new District(0, "opolskie"));
 		districts.add(new District(1, "dolnoœl¹skie"));
 		districts.add(new District(2, "œl¹skie"));
+		districts.add(new District(3, "pomorskie"));
 
 		allCities = new ArrayList<>();
 		allCities.add(new City(0, "Opole", districts.get(0)));
