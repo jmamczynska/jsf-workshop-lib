@@ -29,6 +29,7 @@ public class ProductController implements Serializable {
 		productList.add(new Product(3, "CC", "Pendrive 32GB", new BigDecimal("87.20"), new Date()));
 		productList.add(new Product(4, "DD", "Pendrive 32GB", new BigDecimal("81.20"), new Date()));
 		productList.add(new Product(5, "E1", "S³uchawki douszne", new BigDecimal("20.47"), new Date()));
+
 	}
 
 	public Product getProduct() {
