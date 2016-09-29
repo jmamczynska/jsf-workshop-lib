@@ -7,6 +7,12 @@ import javax.faces.convert.Converter;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+/**
+ * CDI/JSF district converter for {@link District class}
+ * 
+ * @author JMa
+ *
+ */
 @Named
 @RequestScoped
 public class DistrictConverter implements Converter {
